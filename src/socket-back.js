@@ -18,12 +18,12 @@ const documentos = [
 io.on("connection", (socket) => {
     console.log("Cliente conectado, IP " + socket.id);
 
-    socket.on("selecionar_documento", (nome) => {
+    socket.on("selecionar_documento", (nome, callback) => {
         socket.join(nome);
 
         const documento = encontrarDocumento(nome);
         if(documento){
-            socket.emit("texto_documento", documento.texto);
+            callback(documento.texto);
         }
     })
 
