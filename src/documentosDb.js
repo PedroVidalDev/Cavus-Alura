@@ -31,4 +31,12 @@ function obterDocumentos(){
     return documentos;
 }
 
-export {encontrarDocumento, atualizaDocumento, obterDocumentos, criarDocumento};
+function excluiDocumento(nome){
+    const res = documentosColecao.deleteOne({
+        nome: nome
+    })
+
+    return res;
+}
+
+export {encontrarDocumento, atualizaDocumento, obterDocumentos, criarDocumento, excluiDocumento};
