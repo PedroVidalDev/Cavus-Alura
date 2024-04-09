@@ -5,10 +5,16 @@ io.on("connection", (socket) => {
     console.log("Cliente conectado, IP " + socket.id);
 
     socket.on("adicionar_documento", async (nome) => {
-        const resultado = await criarDocumento();
+        const documentoExiste = (await encontrarDocumento(nome)) !== null;
 
-        if(resultado.acknowledged){
-            io.emit("adicionar_documento_interface", nome);
+        if(documentoExiste){
+            socket.emit("documento_existente", nome)
+        } else{
+            const resultado = await criarDocumento();
+
+            if(resultado.acknowledged){
+                io.emit("adicionar_documento_interface", nome);
+            }
         }
     })
 
