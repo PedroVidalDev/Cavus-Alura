@@ -8,9 +8,7 @@ try{
     await cliente.connect();
 
     const db = cliente.db("alura-websockets");
-    const documentosColecao = db.collection("documentos");
-
-    console.log("conectado ao banco")
+    documentosColecao = db.collection("documentos");
 
 } catch(erro){
     console.log(erro);
