@@ -1,8 +1,16 @@
-import { encontrarDocumento, atualizaDocumento, obterDocumentos } from "./documentosDb.js";
+import { encontrarDocumento, atualizaDocumento, obterDocumentos, criarDocumento } from "./documentosDb.js";
 import io from "./server.js";
 
 io.on("connection", (socket) => {
     console.log("Cliente conectado, IP " + socket.id);
+
+    socket.on("adicionar_documento", async (nome) => {
+        const resultado = await criarDocumento();
+
+        if(resultado.acknowledged){
+            io.emit("adicionar_documento_interface", nome);
+        }
+    })
 
     socket.on("obter_documentos", async (callback) => {
         const documentos = await obterDocumentos();

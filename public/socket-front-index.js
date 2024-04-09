@@ -7,3 +7,13 @@ socket.emit("obter_documentos", (documentos) => {
         inserirLinkDoc(element.nome);
     });
 });
+
+socket.on("adicionar_documento_interface", (nome) => {
+    inserirLinkDoc(nome);
+})
+
+function emitirAdicionarDocumento(nome){
+    socket.emit("adicionar_documento", nome);
+}
+
+export {emitirAdicionarDocumento};
