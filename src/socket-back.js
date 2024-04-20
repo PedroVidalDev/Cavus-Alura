@@ -2,6 +2,7 @@ import { encontrarDocumento, atualizaDocumento, obterDocumentos, criarDocumento,
 import registrarEventosCadastro from "./registrarEventos/registrarEventosCadastro.js";
 import registrarEventosDocumento from "./registrarEventos/registrarEventosDocumento.js";
 import registrarEventosInicio from "./registrarEventos/registrarEventosInicio.js";
+import registrarEventosLogin from "./registrarEventos/registrarEventosLogin.js";
 import io from "./server.js";
 
 io.on("connection", (socket) => {
@@ -10,4 +11,5 @@ io.on("connection", (socket) => {
     registrarEventosInicio(socket, io);
     registrarEventosDocumento(socket, io);
     registrarEventosCadastro(socket, io);
+    registrarEventosLogin(socket, io);
 });
