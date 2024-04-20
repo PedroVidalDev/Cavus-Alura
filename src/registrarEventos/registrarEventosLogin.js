@@ -1,4 +1,5 @@
 import { encontrarUsuario } from "../db/usuarioDb.js";
+import autenticarUsuario from "../utils/autenticarUsuario.js";
 
 function registrarEventosLogin(socket, io){
     socket.on("autenticar_usuario", async (dados) => {
@@ -6,7 +7,19 @@ function registrarEventosLogin(socket, io){
         
         const usuario = await encontrarUsuario(dadosJson["usuario"]);
 
-        console.log(usuario)
+        if(usuario){
+            const autenticado = autenticarUsuario(dadosJson["senha"], usuario);
+
+            if(autenticado){
+                socket.emit("autenticacao_sucesso");
+            } else{
+                socket.emit("autenticacao_erro");
+            }
+        } else{
+            socket.emit("usuario_nao_encontrado");
+        }
+
+        
     })
 
 }
