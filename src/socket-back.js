@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import { encontrarDocumento, atualizaDocumento, obterDocumentos, criarDocumento, excluiDocumento } from "./db/documentosDb.js";
 import registrarEventosCadastro from "./registrarEventos/registrarEventosCadastro.js";
 import registrarEventosDocumento from "./registrarEventos/registrarEventosDocumento.js";
