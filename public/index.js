@@ -1,14 +1,22 @@
 import "./socket-front-index.js";
 import { emitirAdicionarDocumento } from "./socket-front-index.js";
-import { obterCookie } from "./utils/cookies.js";
+import { obterStorage, removerStorage } from "./utils/storage.js";
 
-const tokenJwt = obterCookie("tokenJwt");
+const tokenJwt = obterStorage("tokenJwt");
 
 console.log(tokenJwt)
 
 const listaDocs = document.getElementById("lista-documentos");
 const form = document.getElementById("form-adiciona-documento");
 const inputDocumento = document.getElementById("input-documento");
+
+const botaoLogout = document.querySelector("#botao-logout")
+
+botaoLogout.addEventListener("click", () => {
+    removerStorage("tokenJwt");
+    alert("Usuario deslogado com sucesso.");
+    window.location.href = "/login/index.html";
+})
 
 form.addEventListener("submit", (event) => {
     event.preventDefault()
