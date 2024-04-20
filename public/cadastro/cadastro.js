@@ -8,7 +8,7 @@ form.addEventListener("submit", (event) => {
     const formData = new FormData(form);
     const dados = Object.fromEntries(formData);
     const jsonData = JSON.stringify(dados);
-    console.log(dados)
+    console.log(jsonData)
     
     emitirCadastrarUsuario(jsonData);
 })
