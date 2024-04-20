@@ -1,11 +1,14 @@
 import { usuariosColecao } from "./dbConnect.js";
 
-async function cadastrarUsuario(dados){
-    console.log(dados)
+function encontrarUsuario(nome){
+    return usuariosColecao.findOne({nome: nome});
+}
+
+function cadastrarUsuario(dados){
     return usuariosColecao.insertOne({
         nome: dados["usuario"],
         senha: dados["senha"]
     })
 }
 
-export {cadastrarUsuario}
+export {cadastrarUsuario, encontrarUsuario}
