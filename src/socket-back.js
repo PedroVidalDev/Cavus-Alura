@@ -1,4 +1,4 @@
-import { encontrarDocumento, atualizaDocumento, obterDocumentos, criarDocumento, excluiDocumento } from "./documentosDb.js";
+import { encontrarDocumento, atualizaDocumento, obterDocumentos, criarDocumento, excluiDocumento } from "./db/documentosDb.js";
 import io from "./server.js";
 
 io.on("connection", (socket) => {
