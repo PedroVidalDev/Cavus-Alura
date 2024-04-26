@@ -20,6 +20,11 @@ function registrarEventosDocumento(socket, io){
 
         socket.on("disconnect", () => {
             removerConexao(nomeDocumento, nomeUsuario);
+
+            const usuariosNoDocumento = obterUsuariosDocumento(nomeDocumento);
+            
+            io.to(nomeDocumento).emit("usuarios_no_documento", usuariosNoDocumento);
+
         })
 
     })
