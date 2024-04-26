@@ -1,6 +1,11 @@
+import { obterStorage } from "../utils/storage.js";
 import { alertarERedirecionar, atualizaTextoEditor } from "./documento.js";
 
-const socket = io();
+const socket = io("/usuarios", {
+  auth: {
+    token: obterStorage("tokenJwt")
+  }
+});
 
 function selecionarDocumento(nome) {
   socket.emit("selecionar_documento", nome, (texto) => {
