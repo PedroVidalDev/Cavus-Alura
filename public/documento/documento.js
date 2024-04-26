@@ -11,6 +11,8 @@ const textoEditor = document.getElementById("editor-texto");
 const tituloDocumento = document.getElementById("titulo-documento");
 const botaoExcluir = document.getElementById("excluir-documento");
 
+const listaUsuarios = document.querySelector("#usuarios-conectados");
+
 tituloDocumento.textContent = nomeDocumento || "Documento sem título";
 
 
@@ -40,4 +42,14 @@ function tratarAutorizacaoSucesso(payloadToken){
   selecionarDocumento({nomeDocumento, nomeUsuario: payloadToken.nome});
 }
 
-export { atualizaTextoEditor, alertarERedirecionar, tratarAutorizacaoSucesso };
+function atualizarInterfaceUsuarios(usuariosNoDocumento){
+  listaUsuarios.innerHTML = "";
+
+  usuariosNoDocumento.forEach(usuario => {
+    listaUsuarios.innerHTML += `
+    <li class="list-group-item">${usuario}</li>
+    `
+  });
+}
+
+export { atualizaTextoEditor, alertarERedirecionar, tratarAutorizacaoSucesso, atualizarInterfaceUsuarios };
