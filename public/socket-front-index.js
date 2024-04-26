@@ -9,7 +9,7 @@ const socket = io("/usuarios", {
 
 socket.on("connect_error", (erro) => {
     alert(erro);
-    window.location.href = "/";
+    window.location.href = "/login/index.html";
 })
 
 socket.emit("obter_documentos", (documentos) => {
