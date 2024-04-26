@@ -1,12 +1,14 @@
 import { encontrarDocumento, atualizaDocumento, excluiDocumento } from "./../db/documentosDb.js";
 
 function registrarEventosDocumento(socket, io){
-    socket.on("selecionar_documento", async (nome, callback) => {
-        socket.join(nome);
+    socket.on("selecionar_documento", async ({nomeDocumento, nomeUsuario}, callback) => {
+        socket.join(nomeDocumento);
 
-        const documento = await encontrarDocumento(nome);
+        console.log(nomeUsuario)
+
+        const documento = await encontrarDocumento(nomeDocumento);
         if(documento){
-            callback(documento.texto);
+             callback(documento.texto);
         }
     })
 

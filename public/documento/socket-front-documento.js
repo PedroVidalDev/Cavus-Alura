@@ -1,5 +1,5 @@
 import { obterStorage } from "../utils/storage.js";
-import { alertarERedirecionar, atualizaTextoEditor } from "./documento.js";
+import { alertarERedirecionar, atualizaTextoEditor, tratarAutorizacaoSucesso } from "./documento.js";
 
 const socket = io("/usuarios", {
   auth: {
@@ -7,8 +7,11 @@ const socket = io("/usuarios", {
   }
 });
 
-function selecionarDocumento(nome) {
-  socket.emit("selecionar_documento", nome, (texto) => {
+socket.on("autorizacao_sucesso", tratarAutorizacaoSucesso);
+
+
+function selecionarDocumento(dadosEntrada) {
+  socket.emit("selecionar_documento", dadosEntrada, (texto) => {
     atualizaTextoEditor(texto);
   });
 }
@@ -28,5 +31,6 @@ function emitirExcluirDocumento(nome) {
 socket.on("excluir_documento_sucesso", (nome) => {
   alertarERedirecionar(nome);
 });
+
 
 export { emitirTextoEditor, selecionarDocumento, emitirExcluirDocumento };
