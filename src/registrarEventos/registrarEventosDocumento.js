@@ -18,6 +18,10 @@ function registrarEventosDocumento(socket, io){
             callback(documento.texto);
         }
 
+        socket.on("disconnect", () => {
+            console.log("cliente saiu do doc")
+        })
+        
     })
 
     socket.on("texto_editor", async (texto, nomeDoc) => {
