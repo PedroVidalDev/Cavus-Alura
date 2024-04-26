@@ -1,4 +1,4 @@
-import { adicionarConexao, obterUsuariosDocumento } from "../utils/conexoesDocumentos.js";
+import { adicionarConexao, obterUsuariosDocumento, removerConexao } from "../utils/conexoesDocumentos.js";
 import { encontrarDocumento, atualizaDocumento, excluiDocumento } from "./../db/documentosDb.js";
 
 function registrarEventosDocumento(socket, io){
@@ -19,9 +19,9 @@ function registrarEventosDocumento(socket, io){
         }
 
         socket.on("disconnect", () => {
-            console.log("cliente saiu do doc")
+            removerConexao(nomeDocumento, nomeUsuario);
         })
-        
+
     })
 
     socket.on("texto_editor", async (texto, nomeDoc) => {
