@@ -9,6 +9,10 @@ const socket = io("/usuarios", {
 
 socket.on("autorizacao_sucesso", tratarAutorizacaoSucesso);
 
+socket.on("usuario_ja_no_documento", () => {
+  alert("Documento ja aberto em outra pagina");
+  window.location.href = "/";
+})
 
 function selecionarDocumento(dadosEntrada) {
   socket.emit("selecionar_documento", dadosEntrada, (texto) => {
