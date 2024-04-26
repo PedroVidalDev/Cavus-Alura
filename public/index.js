@@ -26,7 +26,7 @@ form.addEventListener("submit", (event) => {
 
 function inserirLinkDoc(nome){
     listaDocs.innerHTML += `
-    <a href="documento.html?nome=${nome}" id="documento-${nome}" class="list-group-item list-group-item-action">
+    <a href="/documento/index.html?nome=${nome}" id="documento-${nome}" class="list-group-item list-group-item-action">
         ${nome}
     </a>
     `
